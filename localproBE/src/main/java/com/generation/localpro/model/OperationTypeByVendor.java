@@ -22,11 +22,11 @@ public class OperationTypeByVendor {
     
     @ManyToOne
     @JoinColumn(name = "vendor_id")
-    private int vendorId;
+    private PortalUser vendor;
     
     @ManyToOne
     @JoinColumn(name = "operationtype_id")
-    private int operationTypeId;
+    private  OperationType operationType;
 
     private int price;
 

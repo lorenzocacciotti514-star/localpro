@@ -22,7 +22,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private int userId;
+    private  PortalUser user;
 
     private int rating;
 
