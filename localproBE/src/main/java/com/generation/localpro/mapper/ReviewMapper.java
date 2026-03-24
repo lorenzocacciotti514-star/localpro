@@ -1,18 +1,34 @@
 package com.generation.localpro.mapper;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
 
-import org.mapstruct.Mapper;
-
+import com.generation.localpro.dto.ReviewDTO;
 import com.generation.localpro.model.Review;
 
-@Mapper(componentModel = "spring")
-public interface ReviewMapper {
-    
-     ReviewDTO toDTO(Review review);
-     List<ReviewDTO> toDTOs(List<Review> reviews);
+@Component
+public class ReviewMapper {
 
-     Review toEntity(ReviewDTO reviewDTO);
-     List<Review> toEntities(List<ReviewDTO> reviewsDTO);
+    public ReviewDTO toDto(Review entity) {
+        if (entity == null) {
+            return null;
+        }
+        return ReviewDTO.builder()
+            .id(entity.getId())
+            .userId(entity.getUserId())
+            .rating(entity.getRating())
+            .description(entity.getDescription())
+            .build();
+    }
 
+    public Review toEntity(ReviewDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        Review entity = new Review();
+        entity.setId(dto.getId());
+        entity.setUserId(dto.getUserId());
+        entity.setRating(dto.getRating());
+        entity.setDescription(dto.getDescription());
+        return entity;
+    }
 }

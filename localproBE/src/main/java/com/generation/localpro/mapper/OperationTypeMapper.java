@@ -1,20 +1,38 @@
 package com.generation.localpro.mapper;
 
-import java.util.List;
+import org.springframework.stereotype.Component;
 
-import org.mapstruct.Mapper;
-
+import com.generation.localpro.dto.OperationTypeDTO;
 import com.generation.localpro.model.OperationType;
 
+@Component
+public class OperationTypeMapper {
 
+    public OperationTypeDTO toDto(OperationType entity) {
+        if (entity == null) {
+            return null;
+        }
+        return OperationTypeDTO.builder()
+            .id(entity.getId())
+            .userId(entity.getUserId())
+            .name(entity.getName())
+            .tags(entity.getTags())
+            .description(entity.getDescription())
+            .status(entity.getStatus())
+            .build();
+    }
 
-@Mapper (componentModel = "spring")
-public interface OperationTypeMapper {
-    
-       OperationTypeDTO toDTO( OperationType operatyontype);
-       List<OperationTypeDTO> toDTOs(List< OperationType> operatyontypes);
-
-      OperationType toEntity( OperationTypeDTO operatyontypeDTO);
-      List< OperationType> toEntities(List< OperationTypeDTO> operatyontypesDTO);
-
+    public OperationType toEntity(OperationTypeDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        OperationType entity = new OperationType();
+        entity.setId(dto.getId());
+        entity.setUserId(dto.getUserId());
+        entity.setName(dto.getName());
+        entity.setTags(dto.getTags());
+        entity.setDescription(dto.getDescription());
+        entity.setStatus(dto.getStatus());
+        return entity;
+    }
 }
