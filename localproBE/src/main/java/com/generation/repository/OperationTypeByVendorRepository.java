@@ -11,4 +11,6 @@ public interface OperationTypeByVendorRepository extends JpaRepository<Operation
     List<OperationTypeByVendor> findByVendorId(Integer vendorId);
 
     List<OperationTypeByVendor> findByOperationTypeId(Integer operationTypeId);
+
+    boolean existsByVendorIdAndOperationTypeId(Integer vendorId, Integer operationTypeId);
 }

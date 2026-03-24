@@ -40,7 +40,7 @@ public class OperationTypeByVendorController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OperationTypeByVendorDTO create(@Valid @RequestBody OperationTypeByVendorDTO operationTypeByVendorDto) {
-        OperationTypeByVendor created = operationTypeByVendorService.create(
+        OperationTypeByVendor created = operationTypeByVendorService.save(
             operationTypeByVendorMapper.toEntity(operationTypeByVendorDto)
         );
         return operationTypeByVendorMapper.toDto(created);
@@ -57,7 +57,7 @@ public class OperationTypeByVendorController {
 
     @GetMapping("/{id}")
     public OperationTypeByVendorDTO getById(@PathVariable Integer id) {
-        return operationTypeByVendorMapper.toDto(operationTypeByVendorService.getById(id));
+        return operationTypeByVendorMapper.toDto(operationTypeByVendorService.findById(id));
     }
 
     @GetMapping
@@ -67,11 +67,11 @@ public class OperationTypeByVendorController {
     ) {
         List<OperationTypeByVendor> values;
         if (vendorId != null) {
-            values = operationTypeByVendorService.getByVendorId(vendorId);
+            values = operationTypeByVendorService.findByVendorId(vendorId);
         } else if (operationTypeId != null) {
-            values = operationTypeByVendorService.getByOperationTypeId(operationTypeId);
+            values = operationTypeByVendorService.findByOperationTypeId(operationTypeId);
         } else {
-            values = operationTypeByVendorService.getAll();
+            values = operationTypeByVendorService.findAll();
         }
         return values.stream().map(operationTypeByVendorMapper::toDto).collect(Collectors.toList());
     }
@@ -79,6 +79,6 @@ public class OperationTypeByVendorController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
-        operationTypeByVendorService.delete(id);
+        operationTypeByVendorService.deleteById(id);
     }
 }

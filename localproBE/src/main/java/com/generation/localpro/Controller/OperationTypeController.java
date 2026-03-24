@@ -38,7 +38,7 @@ public class OperationTypeController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OperationTypeDTO create(@Valid @RequestBody OperationTypeDTO operationTypeDto) {
-        OperationType created = operationTypeService.create(operationTypeMapper.toEntity(operationTypeDto));
+        OperationType created = operationTypeService.save(operationTypeMapper.toEntity(operationTypeDto));
         return operationTypeMapper.toDto(created);
     }
 
@@ -50,16 +50,16 @@ public class OperationTypeController {
 
     @GetMapping("/{id}")
     public OperationTypeDTO getById(@PathVariable Integer id) {
-        return operationTypeMapper.toDto(operationTypeService.getById(id));
+        return operationTypeMapper.toDto(operationTypeService.findById(id));
     }
 
     @GetMapping
     public List<OperationTypeDTO> getAll(@RequestParam(required = false) Status status) {
         List<OperationType> operationTypes;
         if (status != null) {
-            operationTypes = operationTypeService.getByStatus(status);
+            operationTypes = operationTypeService.findByStatus(status);
         } else {
-            operationTypes = operationTypeService.getAll();
+            operationTypes = operationTypeService.findAll();
         }
         return operationTypes.stream().map(operationTypeMapper::toDto).collect(Collectors.toList());
     }
@@ -67,6 +67,6 @@ public class OperationTypeController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
-        operationTypeService.delete(id);
+        operationTypeService.deleteById(id);
     }
 }

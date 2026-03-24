@@ -37,7 +37,7 @@ public class ReviewController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ReviewDTO create(@Valid @RequestBody ReviewDTO reviewDto) {
-        Review created = reviewService.create(reviewMapper.toEntity(reviewDto));
+        Review created = reviewService.save(reviewMapper.toEntity(reviewDto));
         return reviewMapper.toDto(created);
     }
 
@@ -49,16 +49,16 @@ public class ReviewController {
 
     @GetMapping("/{id}")
     public ReviewDTO getById(@PathVariable Integer id) {
-        return reviewMapper.toDto(reviewService.getById(id));
+        return reviewMapper.toDto(reviewService.findById(id));
     }
 
     @GetMapping
     public List<ReviewDTO> getAll(@RequestParam(required = false) Integer userId) {
         List<Review> reviews;
         if (userId != null) {
-            reviews = reviewService.getByUserId(userId);
+            reviews = reviewService.findByUserId(userId);
         } else {
-            reviews = reviewService.getAll();
+            reviews = reviewService.findAll();
         }
         return reviews.stream().map(reviewMapper::toDto).collect(Collectors.toList());
     }
@@ -66,6 +66,6 @@ public class ReviewController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
-        reviewService.delete(id);
+        reviewService.deleteById(id);
     }
 }

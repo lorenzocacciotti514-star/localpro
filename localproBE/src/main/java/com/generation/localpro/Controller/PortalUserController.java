@@ -38,7 +38,7 @@ public class PortalUserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PortalUserDTO create(@Valid @RequestBody PortalUserDTO portalUserDto) {
-        PortalUser created = portalUserService.create(portalUserMapper.toEntity(portalUserDto));
+        PortalUser created = portalUserService.save(portalUserMapper.toEntity(portalUserDto));
         return portalUserMapper.toDto(created);
     }
 
@@ -50,16 +50,16 @@ public class PortalUserController {
 
     @GetMapping("/{id}")
     public PortalUserDTO getById(@PathVariable Integer id) {
-        return portalUserMapper.toDto(portalUserService.getById(id));
+        return portalUserMapper.toDto(portalUserService.findById(id));
     }
 
     @GetMapping
     public List<PortalUserDTO> getAll(@RequestParam(required = false) Role role) {
         List<PortalUser> users;
         if (role != null) {
-            users = portalUserService.getByRole(role);
+            users = portalUserService.findByRole(role);
         } else {
-            users = portalUserService.getAll();
+            users = portalUserService.findAll();
         }
         return users.stream().map(portalUserMapper::toDto).collect(Collectors.toList());
     }
@@ -67,6 +67,6 @@ public class PortalUserController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
-        portalUserService.delete(id);
+        portalUserService.deleteById(id);
     }
 }
