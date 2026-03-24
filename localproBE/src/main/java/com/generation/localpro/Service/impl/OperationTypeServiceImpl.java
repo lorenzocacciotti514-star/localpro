@@ -9,7 +9,7 @@ import com.generation.localpro.Service.OperationTypeService;
 import com.generation.localpro.exception.ResourceNotFoundException;
 import com.generation.localpro.model.OperationType;
 import com.generation.localpro.model.Status;
-import com.generation.repository.OperationTypeRepository;
+import com.generation.localpro.repository.OperationTypeRepository;
 
 @Service
 @Transactional

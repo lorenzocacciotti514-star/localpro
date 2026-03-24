@@ -1,4 +1,4 @@
-package com.generation.repository;
+package com.generation.localpro.repository;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import com.generation.localpro.model.PortalUser;
 import com.generation.localpro.model.Role;
 
 
-public interface UserRepository extends JpaRepository<PortalUser, Integer>
+public interface PortalUserRepository extends JpaRepository<PortalUser, Integer>
 {
     List<PortalUser> findByFirstName(String firstName);
     List<PortalUser> findByLastName(String lastName);

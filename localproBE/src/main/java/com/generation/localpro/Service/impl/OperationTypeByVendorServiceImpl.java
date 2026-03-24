@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.generation.localpro.Service.OperationTypeByVendorService;
 import com.generation.localpro.exception.ResourceNotFoundException;
 import com.generation.localpro.model.OperationTypeByVendor;
-import com.generation.repository.OperationTypeByVendorRepository;
+import com.generation.localpro.repository.OperationTypeByVendorRepository;
 
 @Service
 @Transactional

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.generation.localpro.Service.ReviewService;
 import com.generation.localpro.exception.ResourceNotFoundException;
 import com.generation.localpro.model.Review;
-import com.generation.repository.ReviewRepository;
+import com.generation.localpro.repository.ReviewRepository;
 
 @Service
 @Transactional

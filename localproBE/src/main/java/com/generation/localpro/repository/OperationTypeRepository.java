@@ -1,4 +1,4 @@
-package com.generation.repository;
+package com.generation.localpro.repository;
 
 import java.util.List;
 
@@ -9,5 +9,7 @@ import com.generation.localpro.model.Status;
 
 public interface OperationTypeRepository extends JpaRepository<OperationType, Integer>
 {
+    List<OperationType> findByVendorId(Integer vendorId);
+    List<OperationType> findByOperationTypeId(Integer operationTypeId);
     List<OperationType> findByStatus(Status status);
 }

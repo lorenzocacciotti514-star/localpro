@@ -9,7 +9,7 @@ import com.generation.localpro.Service.PortalUserService;
 import com.generation.localpro.exception.ResourceNotFoundException;
 import com.generation.localpro.model.PortalUser;
 import com.generation.localpro.model.Role;
-import com.generation.repository.PortalUserRepository;
+import com.generation.localpro.repository.PortalUserRepository;
 
 @Service
 @Transactional
